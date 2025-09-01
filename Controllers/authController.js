@@ -72,8 +72,6 @@ export const forgotPassword = async (req, res) => {
             expiresIn: "1h",
         });
 
-        jwt.verify(req.params.token, process.env.JWT_SECRET);
-
         await sendEmail(
             user.email,
             "Password Reset Link",
@@ -113,6 +111,6 @@ export const resetPassword = async (req, res) => {
         }
         res.status(200).json({ message: "Password Changed Successfully" });
     } catch (error) {
-        res.status(500).json({ message: "not Successfully" });
+        res.status(500).json({ message: error.message});
     }
 };
