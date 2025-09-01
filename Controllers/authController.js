@@ -72,12 +72,14 @@ export const forgotPassword = async (req, res) => {
             expiresIn: "1h",
         });
 
+        jwt.verify(req.params.token, process.env.JWT_SECRET);
+
         await sendEmail(
             user.email,
             "Password Reset Link",
-            `you are receiving this because you try to reset your password for you acount.
+            `you are receiving this because you try to reset your password for you account.
       Click the following Link to complete the process 
-      https://rloginpage.netlify.app/reset-password/${user._id}/${token}
+      https://regloginpage.netlify.app/reset-password/${user._id}/${token}
       please ignore if you have not Requested for reset password`
         );
 
@@ -109,8 +111,8 @@ export const resetPassword = async (req, res) => {
         if (!updateUser) {
             return res.status(404).json({ message: "User not Found" });
         }
-        res.status(200).json({ message: "Password Changed Succesfully" });
+        res.status(200).json({ message: "Password Changed Successfully" });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: "not Successfully" });
     }
 };
