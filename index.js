@@ -16,7 +16,7 @@ app.use(cors());
 connectDB();
 
 app.get("/", (req, res) => {
-    res.status(200).send("Welcome to the Backend Riswan");
+    res.status(200).send("Welcome to the Backend");
 });
 
 app.use("/api/auth", authRoute);

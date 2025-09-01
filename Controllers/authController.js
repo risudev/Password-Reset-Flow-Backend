@@ -10,9 +10,9 @@ dotenv.config();
 
 export const userRegister = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { name, email, password } = req.body;
         const hashPassword = await bcrypt.hash(password, 10);
-        const newUser = new users({ username, email, password: hashPassword });
+        const newUser = new users({ name, email, password: hashPassword });
         await newUser.save();
         res
             .status(200)
@@ -66,7 +66,7 @@ export const forgotPassword = async (req, res) => {
         const { email } = req.body;
         const user = await users.findOne({ email });
         if (!user) {
-            res.status(404).json({ message: "User Not Found" });
+            return res.status(404).json({ message: "User Not Found" });
         }
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
             expiresIn: "1h",
@@ -77,7 +77,7 @@ export const forgotPassword = async (req, res) => {
             "Password Reset Link",
             `you are receiving this because you try to reset your password for you acount.
       Click the following Link to complete the process 
-      https://passwordauthreset.netlify.app/reset-password/${user._id}/${token} 
+      https://rloginpage.netlify.app/reset-password/${user._id}/${token}
       please ignore if you have not Requested for reset password`
         );
 
