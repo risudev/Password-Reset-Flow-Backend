@@ -23,14 +23,11 @@
 - Clean and Readable Code
 - MVC pattern followed
 
-## API Documentation Link
-
-- https://documenter.getpostman.com/view/47684315/2sB3Hhsh8o
 
 
 ## DEMO Link
 
-- 
+- https://password-reset-flow-backend-j6hn.onrender.com/
 
 ## Authors
 
